@@ -1,0 +1,21 @@
+<h2>Trang Phim</h2>
+
+
+<div class="row">
+{{#each Course}}
+
+<div class="col-sm-6 col-lg-4"> 
+<div class="card">
+  <a href="home/{{this.slug}}">
+    <img class="card-img-top" src="{{this.image}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{this.name}}</h5>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+    </a>
+  </div>
+  </div> 
+  
+  {{/each}}
+</div>
+  

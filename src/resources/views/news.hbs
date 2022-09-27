@@ -1,0 +1,84 @@
+<h2 class="ml-4">Trang admin</h2>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tên Phim</th>
+      <th scope="col">Mô tả</th>
+      <th scope="col" colspan="2">Ngày thêm</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each Course}}
+    <tr>
+      <th scope="row">{{@index}}</th>
+      <td>{{this.name}}</td>
+      <td>{{this.describe}}</td>
+      <td>{{this.createdAt}}</td>
+      <td>
+        <a href="news/{{this._id}}/edit"><button type="button" class="btn btn-primary">Chỉnh sửa</button></a>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{this._id}}">Xoá </button>
+
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Bạn có chắc muốn xoá phim này ko??
+                </div>
+                <div class="modal-footer">
+                  <button id="button-delete" type="button" class="btn btn-danger">Xoá</button>
+                  <button  type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </td>
+    </tr>
+     {{/each}}
+  </tbody>
+</table>
+
+  {{!-- form --}}
+  <form name="delete-form" method="post"></form>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded',function()
+  {    var id
+      var delete_form = document.forms['delete-form']
+
+    $('#exampleModalCenter').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  id = button.data('id') 
+  
+  console.log(delete_form)
+    })
+
+      var ButDel = document.getElementById('button-delete')
+      ButDel.onclick = function(){
+
+        delete_form.action='/news/'+id+'?_method=DELETE';
+        delete_form.submit();
+      }
+
+  })
+
+  
+</script>
+
+
+ 
+
+  
